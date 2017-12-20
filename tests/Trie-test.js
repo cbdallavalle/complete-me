@@ -138,19 +138,26 @@ describe('Trie', function() {
     });
   })
 
-  describe('sad path', () => {
+  describe.only('sad path', () => {
 
-    it('should not be able to take a data type that is not a string', () => {
+    it.skip('should not be able to take a data type that is not a string', () => {
       expect(trie.insert(12312)).to.equal(null);
       expect(trie.insert(['pangolin', 'slow loris', 'axoltol'])).to.equal(null);
       expect(trie.insert({'bearded vulture': 'bird'})).to.equal(null);
     });
 
-    it('should return null if selecting a something that is not a word', () => {
+    it.skip('should return null if selecting or suggesting a string that is not a word', () => {
       trie.populate(dictionary);
 
       expect(trie.select('adsaweasdasdf')).to.equal(null);
+      expect(trie.suggest('adsaw')).to.equal(null);
     });
+
+    it('can find words with upper case letters', () => {
+      trie.populate(dictionary);
+
+      expect(trie.find('YAk')).to.deep.equal(trie.root.children.y.children.a.children.k);
+    })
 
   })
 
