@@ -146,11 +146,18 @@ describe('Trie', function() {
       expect(trie.insert({'bearded vulture': 'bird'})).to.equal(null);
     });
 
-    it('should return null if selecting a something that is not a word', () => {
+    it('should return null if selecting or suggesting a string that is not a word', () => {
       trie.populate(dictionary);
 
       expect(trie.select('adsaweasdasdf')).to.equal(null);
+      expect(trie.suggest('adsaw')).to.equal(null);
     });
+
+    it('can find words with upper case letters', () => {
+      trie.populate(dictionary);
+
+      expect(trie.find('YAk')).to.deep.equal(trie.root.children.y.children.a.children.k);
+    })
 
   })
 
