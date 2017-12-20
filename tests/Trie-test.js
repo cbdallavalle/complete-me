@@ -138,15 +138,15 @@ describe('Trie', function() {
     });
   })
 
-  describe.only('sad path', () => {
+  describe('sad path', () => {
 
-    it.skip('should not be able to take a data type that is not a string', () => {
+    it('should not be able to take a data type that is not a string', () => {
       expect(trie.insert(12312)).to.equal(null);
       expect(trie.insert(['pangolin', 'slow loris', 'axoltol'])).to.equal(null);
       expect(trie.insert({'bearded vulture': 'bird'})).to.equal(null);
     });
 
-    it.skip('should return null if selecting or suggesting a string that is not a word', () => {
+    it('should return null if selecting or suggesting a string that is not a word', () => {
       trie.populate(dictionary);
 
       expect(trie.select('adsaweasdasdf')).to.equal(null);
