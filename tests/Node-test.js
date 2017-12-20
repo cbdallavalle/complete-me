@@ -17,11 +17,16 @@ describe('Node', function() {
     expect(node.data).to.equal('apple');
   });
 
-  it('should have a default of null for the child and false for the isCompleted properties', function() {
-    node = new Node('grape');
-    expect(node.child).to.equal(null);
-    expect(node.isCompleted).to.equal(false);
+  it('should have a default of an empty object for the child', () => {
+    expect(node.children).to.deep.equal({});
+  });
 
+  it('it should have a default of false for isCompleted', () => {
+    expect(node.isCompleted).to.equal(false);
+  })
+
+  it('should have a default of 0 for timesSelected', () => {
+    expect(node.timesSelected).to.equal(0);
   })
 
 })
