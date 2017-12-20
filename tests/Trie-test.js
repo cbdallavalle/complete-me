@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Node from '../lib/Node';
 import Trie from '../lib/Trie';
+import fs from 'fs';
 
 describe.only('Trie', function() {
   let trie;
@@ -58,24 +59,26 @@ describe.only('Trie', function() {
   });
 
   it('should suggest an array of words that match the words you are putting in', () => {
-    trie.insert('pizza');
-    trie.insert('pizzeria');
-    trie.insert('pill');
+    trie.insert('manatee');
+    trie.insert('mangabey');
+    trie.insert('mantaray');
     // console.log( JSON.stringify(trie, null, 4) );
-    expect(trie.suggest('pi')).to.deep.equal(["pizza", "pizzeria", "pill"]);
+    expect(trie.suggest('ma')).to.deep.equal(["manatee", "mangabey", "mantaray"]);
   });
 
+  it('should take in a massive amount of words', () => {
+    const text = "/usr/share/dict/words"
+    const dictionary = fs.readFileSync(text).toString().trim().split('\n')
+    const completion = new Trie()
 
-//   completion.suggest("piz")
-// => ["pizza"]
+    completion.populate(dictionary)
+    
+    expect(completion.count()).to.equal(235886);
+    expect(completion.suggest('piz')).to.deep.equal(["pize", "pizza", "pizzeria", "pizzicato", "pizzle"]);
+  })
 
-// completion.insert("pizzeria")
 
-// completion.suggest("piz")
-// => ["pizza", "pizzeria"]
 
-// completion.suggest('a')
-// => ["apple"]
 
 
 })
