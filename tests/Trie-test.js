@@ -55,7 +55,6 @@ describe('Trie', function() {
       expect(trie.root.children.a.children.n.data).to.equal('n');
       expect(trie.root.children.a.children.n.children.t.children.e.children.a.children.t.children.e.children.r.isCompleted).to.equal(true);
     });
-
   });
 
   describe('suggest', () => {
@@ -92,11 +91,7 @@ describe('Trie', function() {
       expect(completion.suggest('piz')).to.deep.equal(["pize", "pizza", "pizzeria", "pizzicato", "pizzle"]);
     })
 
-    //sad path
-      //a random string of words
-      //other data types besides a string
-      //what if someone asks for a suggestion but there is none
-  })
+  });
 
   describe('select' , () => {
 
