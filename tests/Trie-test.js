@@ -87,7 +87,7 @@ describe('Trie', function() {
 
       completion.populate(dictionary);
       
-      expect(completion.count()).to.equal(235886);
+      expect(completion.count).to.equal(235886);
       expect(completion.suggest('piz')).to.deep.equal(["pize", "pizza", "pizzeria", "pizzicato", "pizzle"]);
     })
 
